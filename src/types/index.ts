@@ -163,8 +163,7 @@ export interface MarkupCalculationService {
 
 export interface ExcelExportService {
   generateConsolidatedWorkbook(
-    pricelists: readonly SupplierPricelist[],
-    config: ExportConfiguration
+    pricelists: readonly SupplierPricelist[]
   ): Promise<ProcessingResult<Blob>>;
 }
 

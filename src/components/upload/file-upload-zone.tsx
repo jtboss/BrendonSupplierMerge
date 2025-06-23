@@ -25,7 +25,7 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({
 
     Array.from(files).forEach((file) => {
       // Check file type
-      if (!ALLOWED_MIME_TYPES.includes(file.type as any)) {
+      if (!ALLOWED_MIME_TYPES.includes(file.type as typeof ALLOWED_MIME_TYPES[number])) {
         errors.push(`${file.name}: Invalid file type. Only Excel files are allowed.`);
         return;
       }

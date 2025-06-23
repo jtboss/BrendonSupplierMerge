@@ -4,7 +4,7 @@ import {
   ExcelSheet,
   ProcessingResult,
   ValidationResult,
-  ProcessingError,
+
   ALLOWED_MIME_TYPES,
   MAX_FILE_SIZE,
   MAX_ROWS_PER_FILE,
@@ -22,7 +22,7 @@ export class ExcelParsingServiceImpl implements ExcelParsingService {
    */
   public validateFile(file: File): ValidationResult {
     // Check file type
-    if (!ALLOWED_MIME_TYPES.includes(file.type as any)) {
+    if (!ALLOWED_MIME_TYPES.includes(file.type as typeof ALLOWED_MIME_TYPES[number])) {
       return {
         isValid: false,
         error: `Invalid file type. Only Excel files (.xlsx, .xls) are allowed. Received: ${file.type}`,

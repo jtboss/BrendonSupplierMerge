@@ -221,7 +221,7 @@ export class MarkupCalculationServiceImpl implements MarkupCalculationService {
       const markupPrice = cost.mul(markupMultiplier);
       
       return markupPrice.toDecimalPlaces(decimalPlaces).toNumber();
-    } catch (error) {
+    } catch {
       // Return null for any calculation errors
       return null;
     }
@@ -409,7 +409,7 @@ export class MarkupCalculationServiceImpl implements MarkupCalculationService {
      }
 
      // If direct parsing failed, try cleaning the string more aggressively
-     let cleaned = stringValue
+     const cleaned = stringValue
        .replace(/[$£€¥₹R]/gi, '') // Currency symbols (case insensitive)
        .replace(/[,\s\u00A0\u2000-\u200B\u2028\u2029]/g, '') // Commas, spaces, and various Unicode spaces
        .replace(/[()]/g, '') // Parentheses

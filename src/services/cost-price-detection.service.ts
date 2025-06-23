@@ -45,8 +45,8 @@ export class CostPriceDetectionServiceImpl implements CostPriceDetectionService 
     const strategies = [
       () => this.detectByHeaderExactMatch(headers, opts),
       () => this.detectByHeaderPartialMatch(headers, opts),
-      () => this.detectByDataPatterns(headers, rows, opts),
-      () => this.detectByPositionHeuristics(headers, rows, opts),
+      () => this.detectByDataPatterns(headers, rows),
+      () => this.detectByPositionHeuristics(headers, rows),
     ];
 
     let bestResult: DetectionResult | null = null;
@@ -65,8 +65,8 @@ export class CostPriceDetectionServiceImpl implements CostPriceDetectionService 
       // Try all strategies again with lower thresholds
       const fallbackStrategies = [
         () => this.detectByHeaderPartialMatch(headers, opts),
-        () => this.detectByDataPatterns(headers, rows, opts),
-        () => this.detectByPositionHeuristics(headers, rows, opts),
+        () => this.detectByDataPatterns(headers, rows),
+        () => this.detectByPositionHeuristics(headers, rows),
       ];
 
       for (const strategy of fallbackStrategies) {
@@ -171,8 +171,7 @@ export class CostPriceDetectionServiceImpl implements CostPriceDetectionService 
    */
   private detectByDataPatterns(
     headers: readonly string[],
-    rows: readonly ExcelRow[],
-    options: Required<DetectionOptions>
+    rows: readonly ExcelRow[]
   ): DetectionResult {
     const numericColumns: Array<{ index: number; score: number }> = [];
 
@@ -217,8 +216,7 @@ export class CostPriceDetectionServiceImpl implements CostPriceDetectionService 
    */
   private detectByPositionHeuristics(
     headers: readonly string[],
-    rows: readonly ExcelRow[],
-    options: Required<DetectionOptions>
+    rows: readonly ExcelRow[]
   ): DetectionResult {
     // Common positions for price columns (0-based) - expanded range
     const commonPricePositions = [1, 2, 3, 4, 5]; // Second through sixth columns

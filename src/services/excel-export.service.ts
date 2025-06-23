@@ -1,10 +1,8 @@
 import * as XLSX from 'xlsx';
 import {
   ExcelExportService,
-  ExportConfiguration,
   SupplierPricelist,
   ProcessingResult,
-  ProcessingError,
 } from '@/types';
 
 /**
@@ -15,8 +13,7 @@ export class ExcelExportServiceImpl implements ExcelExportService {
    * Generates a consolidated Excel workbook from multiple supplier pricelists
    */
   public async generateConsolidatedWorkbook(
-    pricelists: readonly SupplierPricelist[],
-    config: ExportConfiguration
+    pricelists: readonly SupplierPricelist[]
   ): Promise<ProcessingResult<Blob>> {
     try {
       if (pricelists.length === 0) {

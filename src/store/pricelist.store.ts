@@ -119,7 +119,7 @@ export const usePricelistStore = create<PricelistStoreState>()(
     exportConsolidated: async (config: ExportConfiguration) => {
       const { files } = get();
       
-      const result = await excelExportService.generateConsolidatedWorkbook(files, config);
+      const result = await excelExportService.generateConsolidatedWorkbook(files);
       
       if (result.success) {
         // Trigger download
