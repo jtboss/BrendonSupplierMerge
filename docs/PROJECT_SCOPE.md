@@ -19,7 +19,7 @@ A web application that allows users to upload multiple Excel supplier pricelists
 - Progress indicators for large file processing
 - File validation and error handling
 - Maximum file size: 50MB per file
-- Maximum rows per file: 2,500
+- Maximum rows per file: 5,000
 
 ### Data Processing
 - Parse Excel files and extract data
